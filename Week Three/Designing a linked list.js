@@ -89,6 +89,21 @@ class LinkedList {
     }
   }
 
+  reverse() {
+    if (this.size <= 0) {
+      return;
+    } else {
+      let previous = null;
+      while (this.head) {
+        let next = this.head.next;
+        this.head.next = previous;
+        previous = this.head;
+        this.head = next;
+      }
+      this.head = previous;
+    }
+  }
+
   printListData() {
     let current = this.head;
     while (current) {
@@ -109,4 +124,5 @@ linkedList.removeAtIndex(4);
 
 linkedList.printListData();
 console.log("-----------------------");
-console.log(linkedList.getAtIndex(4));
+linkedList.reverse();
+linkedList.printListData();
