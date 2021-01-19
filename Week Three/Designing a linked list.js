@@ -104,6 +104,31 @@ class LinkedList {
     }
   }
 
+  swap(index1, index2) {
+    let max = index1 > index2 ? index1 : index2;
+    let current = this.head;
+    let previous1, previous2;
+    let atIndex1, atIndex2;
+    let count = 0;
+    while (count < max) {
+      if (count < index1) {
+        previous1 = current;
+        atIndex1 = current.next;
+      }
+      if (count < index2) {
+        previous2 = current;
+        atIndex2 = current.next;
+      }
+      current = current.next;
+      count++;
+    }
+    previous1.next = atIndex2;
+    previous2.next = atIndex1;
+    let temp = atIndex1.next;
+    atIndex1.next = atIndex2.next;
+    atIndex2.next = temp;
+  }
+
   printListData() {
     let current = this.head;
     while (current) {
@@ -120,9 +145,8 @@ linkedList.insertAtFirst(2);
 linkedList.insertAtLast(3);
 linkedList.insertAtLast(4);
 linkedList.insertAtIndex(5, 1);
-linkedList.removeAtIndex(4);
 
 linkedList.printListData();
 console.log("-----------------------");
-linkedList.reverse();
+linkedList.swap(1, 2);
 linkedList.printListData();
