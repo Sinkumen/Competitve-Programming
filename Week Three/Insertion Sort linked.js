@@ -2,7 +2,6 @@ var insertionSortList = function (head) {
   if (!head || !head.next) {
     return head;
   }
-
   let sorted = null;
   let current = head;
   while (current) {
