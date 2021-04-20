@@ -1,7 +1,6 @@
 class Solution:
     def findingUsersActiveMinutes(self, logs, k: int):
         UAM = {}
-
         for log in logs:
             if log[0] in UAM:
                 UAM[log[0]].add(log[1])
