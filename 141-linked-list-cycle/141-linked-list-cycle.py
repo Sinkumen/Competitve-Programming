@@ -10,9 +10,9 @@ class Solution:
             return False
         slow = head
         fast = head.next
-        while fast and slow:
+        while fast and fast.next and slow:
             if fast ==  slow:
                 return True
             slow = slow.next
-            fast = fast.next.next if fast.next else None
+            fast = fast.next.next
         return False
