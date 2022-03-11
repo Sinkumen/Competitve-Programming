@@ -14,21 +14,14 @@ class Solution:
         while last.next:
             count += 1
             last = last.next
-            
-        k = k%count
+        last.next = head  
+        k = count -  k%count
+        while k:
+            last = last.next
+            k -= 1
+        ans = last.next
+        last.next = None
         
-        for i in range(k):
-            last = head
-            prev = None
-            count = 1
-            while last.next:
-                count += 1
-                prev = last
-                last = last.next
-            prev.next = None
-            last.next = head
-            head = last
-            
-        return head
+        return ans
         
             
