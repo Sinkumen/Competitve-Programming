@@ -18,7 +18,6 @@ class FreqStack:
         self.maxfreq[top] -= 1
         if not self.freq[self.max]:
             self.max = self.max - 1
-        print(top)
         return top
         
         
