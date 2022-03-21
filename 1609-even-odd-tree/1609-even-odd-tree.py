@@ -23,6 +23,7 @@ class Solution:
                 if cur.right:
                     queue.append(cur.right)
             level += 1
+            
         return True
                 
         
