@@ -1,21 +1,23 @@
 class Solution:
     def partitionLabels(self, s: str) -> List[int]:
-        last_inds = {}
-        n = len(s)
+        last = defaultdict(int)
+        for i in range(len(s)):
+            last[s[i]] = i
         
-        for i in range(n):
-            last_inds[s[i]] = i
-        
-        start,end = -1,last_inds[s[0]]
-        
+        end = 0
+        unique = set()
+        total = 0
         ans = []
-        #print(last_inds)
-        for i in range(n):
-         #   print(start,end,i)
-            end = max(end,last_inds[s[i]])
-            if end == i:
-                ans.append(end - start)
-                start = end
-        
+        for i in range(len(s)):
+            c = s[i]
+            if last[c] == i:
+                end += 1
+            total += 1
+            unique.add(c)
+            if len(unique) == end:
+                ans.append(total)
+                end = 0
+                unique = set()
+                total = 0
         return ans
-            
+                
