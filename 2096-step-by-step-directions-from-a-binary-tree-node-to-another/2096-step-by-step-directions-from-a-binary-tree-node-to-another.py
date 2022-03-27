@@ -6,43 +6,33 @@
 #         self.right = right
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
-       
-        start = self.dfs(root,startValue,[])
-        dest = self.dfs(root,destValue,[])
-		
-        ans = []
+        start = self.findPath(root,startValue,[])
+        dest = self.findPath(root,destValue,[])
         s = 0
-        d = 0
-        while s < len(start) and d < len(dest):
-            st = start[s]
-            de = dest[d]
-            if st != de:
-                ans = "U" * (len(start) - s) 
-                ans += "".join(dest[d:])
-                return ans
+        e = 0
+        ans = []
+        while s<len(start) and e<len(dest) and start[s] == dest[e]:
             s += 1
-            d += 1
-        if s < len(start):
-            return "U"*(len(start)-s)
-        elif d < len(dest):
-            return "".join(dest[d:])
-
-    def dfs(self,node,target,res):
-        if not node: return None
+            e += 1
+        ans.append("U"*(len(start)-s))
+        ans.extend(dest[e:])
+        
+        return "".join(ans)
+            
+    def findPath(self,node,target,path):
         if node.val == target:
-            return res
-        res.append("L")
-        left  = self.dfs(node.left,target,res)
-        if left:
-            return left
-        else:
-            res.pop()
-        res.append("R")
-        right  = self.dfs(node.right,target,res)
-        if right:
-            return right
-        else:
-            res.pop()
-        return None
+            return path
+        if node.left:
+            path.append("L")
+            res = self.findPath(node.left,target,path)
+            if res:
+                return res
+            path.pop()
+        if node.right:
+            path.append("R")
+            res = self.findPath(node.right,target,path)
+            if res:
+                return res
+            path.pop()
         
             
