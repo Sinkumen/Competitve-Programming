@@ -1,25 +1,22 @@
 class Solution:
     def search(self, nums, target):
-        l, r = 0, len(nums)-1
-        while l <= r:
-            mid = l + (r-l)//2
+        start = 0
+        end = len(nums) - 1
+        while start <= end:
+            mid = (start + end)//2
             if nums[mid] == target:
                 return True
-            while l < mid and nums[l] == nums[mid]: # tricky part
-                l += 1
-            # the first half is ordered
-            if nums[l] <= nums[mid]:
-                # target is in the first half
-                if nums[l] <= target < nums[mid]:
-                    r = mid - 1
+            if nums[mid] < nums[start]:
+                if nums[mid] < target < nums[start]:
+                    start = mid + 1
                 else:
-                    l = mid + 1
-            # the second half is ordered
+                    end = mid - 1
+            elif nums[mid] > nums[start]:
+                if nums[start] <= target < nums[mid]:
+                    end = mid - 1
+                else:
+                    start = mid + 1
             else:
-                # target is in the second half
-                if nums[mid] < target <= nums[r]:
-                    l = mid + 1
-                else:
-                    r = mid - 1
+                start += 1
         return False
         
