@@ -1,27 +1,23 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        def findPivot():
-            start = 0
-            end = len(nums)-1
-            while start <= end:
-                mid = (start + end)//2
-                if nums[mid] >= nums[0]:
-                    start = mid + 1
-                else:
-                    end = mid - 1
-            return start
-        
-        pivot = findPivot()
-        start = 0 if target >= nums[0] else pivot
-        end = pivot - 1  if target >= nums[0] else len(nums)-1
+        start = 0
+        end = len(nums) - 1
         while start <= end:
             mid = (start + end)//2
             if nums[mid] == target:
                 return mid
-            elif nums[mid] > target:
-                end = mid - 1
+            if nums[mid] < nums[start]:
+                if nums[mid] < target < nums[start]:
+                    start = mid + 1
+                else:
+                    end = mid - 1
+            elif nums[mid] > nums[start]:
+                if nums[start] <= target < nums[mid]:
+                    end = mid - 1
+                else:
+                    start = mid + 1
             else:
-                start = mid + 1
+                start += 1
         return -1
             
        
