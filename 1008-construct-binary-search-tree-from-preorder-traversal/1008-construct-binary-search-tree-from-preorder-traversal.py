@@ -6,17 +6,14 @@
 #         self.right = right
 class Solution:
     def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
-        def build(parent,val):
-            if not parent:
-                return TreeNode(val)
-            if parent.val > val:
-                parent.left = build(parent.left,val)
-            else:
-                parent.right = build(parent.right,val)
-            return parent
-        
-        root = None
-        for n in preorder:
-            root = build(root,n)
+        def build(lst,lower,upper):
+            if not lst or not lower <= lst[0] <= upper:
+                return None
             
-        return root
+            cur = TreeNode(lst.pop(0))
+            
+            cur.left = build(lst,lower,cur.val)
+            cur.right = build(lst,cur.val,upper)
+            
+            return cur
+        return build(preorder,float("-inf"),float("inf"))
