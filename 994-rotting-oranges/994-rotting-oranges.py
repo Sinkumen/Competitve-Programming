@@ -10,7 +10,6 @@ class Solution:
                     fresh += 1
         if not fresh and not queue:
             return 0
-        
         directions = [(0,1),(1,0),(0,-1),(-1,0)]
         count = 0
         while queue:
