@@ -3,7 +3,6 @@ class Solution:
         def shift(grid):
             n = len(grid)-1
             m = len(grid[0])-1
-
             prev = grid[n][m]
             for i in range(n+1):
                 temp = grid[i][m]
@@ -12,8 +11,10 @@ class Solution:
                 grid[i][0] = prev
                 prev = temp
             return grid
+        
         for i in range(k):
             shift(grid)
+            
         return grid
             
             
