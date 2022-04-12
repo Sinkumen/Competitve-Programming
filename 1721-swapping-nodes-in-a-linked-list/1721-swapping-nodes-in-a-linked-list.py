@@ -14,7 +14,6 @@ class Solution:
         last = head
         cur = head
         curSize = 1
-        
         while cur:
             if curSize < k:
                 first = cur.next
