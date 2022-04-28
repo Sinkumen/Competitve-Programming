@@ -1,5 +1,6 @@
 class Solution:
     def minimumEffortPath(self, heights: List[List[int]]) -> int:
+        
         r = len(heights)-1
         c = len(heights[0])-1
         
@@ -19,6 +20,7 @@ class Solution:
                         if res:
                             return True
             return False
+        
         start = 0
         end = 10**6
         ans = end
