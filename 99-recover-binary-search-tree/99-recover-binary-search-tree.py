@@ -14,17 +14,14 @@ class Solution:
         def dfs(node):
             if not node:
                 return
-            if node.val in swap:
-                node.val = swap[node.val]
-                
+    
             dfs(node.left)
-            inorder.append(node.val)
+            inorder.append(node)
             dfs(node.right)
         dfs(root)
-        srtd = sorted(inorder)
-        swap = {}
+        srtd = sorted(n.val for n in inorder)
+        
         for i in range(len(srtd)):
-            if srtd[i] != inorder[i]:
-                swap[inorder[i]] = srtd[i]
-        dfs(root)
+            inorder[i].val = srtd[i]
+
         
