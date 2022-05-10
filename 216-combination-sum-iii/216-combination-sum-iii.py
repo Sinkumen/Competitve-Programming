@@ -3,19 +3,15 @@ class Solution:
         ans = []
         visited = set()
         def dfs(i,summ,res):
-            if i > k or summ > n:
+            if len(res) == k :
+                if summ == n:
+                    ans.append(sorted(res))
                 return
-            if summ == n and i==k:
-                srtd = sorted(res)
-                tup = tuple(srtd)
-                if tup not in visited:
-                    visited.add(tup)
-                    ans.append(srtd)
-                return
+
             for j in range(i+1,10):
-                if j not in res:
-                    res.add(j)
-                    dfs(i+1,summ+j,res)
-                    res.remove(j)
-        dfs(0,0,set())
+                if j <= n:
+                    dfs(j,summ+j,res+[j])
+                else:
+                    return
+        dfs(0,0,[])
         return ans
