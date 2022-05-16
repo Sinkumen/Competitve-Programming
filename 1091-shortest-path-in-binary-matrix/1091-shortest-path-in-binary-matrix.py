@@ -8,13 +8,14 @@ class Solution:
         visited = set()
         while queue:
             x,y,level = queue.popleft()
-            if x == len(grid)-1 and y == len(grid[0])-1:
-                return level
-            for d in dirs:
-                nx = x+d[0]
-                ny = y+d[1]
-                if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]):
-                    if grid[nx][ny] == 0 and (nx,ny) not in visited:
-                        visited.add((nx,ny))
-                        queue.append((nx,ny,level+1))
+            if (x,y) not in visited:
+                visited.add((x,y))
+                if x == len(grid)-1 and y == len(grid[0])-1:
+                    return level
+                for d in dirs:
+                    nx = x+d[0]
+                    ny = y+d[1]
+                    if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]):
+                        if grid[nx][ny] == 0:
+                            queue.append((nx,ny,level+1))
         return -1
