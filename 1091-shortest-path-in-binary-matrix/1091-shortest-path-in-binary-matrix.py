@@ -1,21 +1,16 @@
 class Solution:
-    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-
-        dirs = [(0,1),(1,0),(0,-1),(-1,0),(1,1),(-1,-1),(-1,1),(1,-1)]
-        queue = deque([])
-        if grid[0][0] == 0:
-            queue.append((0,0,1))
+    def shortestPathBinaryMatrix(self, grid):
+        N = len(grid)
+        neibs = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]
+        queue = deque([(1, 0, 0)]) if grid[0][0] == 0 else deque()
         visited = set()
+        
         while queue:
-            x,y,level = queue.popleft()
-            if (x,y) not in visited:
-                visited.add((x,y))
-                if x == len(grid)-1 and y == len(grid[0])-1:
-                    return level
-                for d in dirs:
-                    nx = x+d[0]
-                    ny = y+d[1]
-                    if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]):
-                        if grid[nx][ny] == 0:
-                            queue.append((nx,ny,level+1))
+            dist, x, y = queue.popleft()
+            if (x, y) == (N-1, N-1): return dist
+            for dx, dy in neibs:
+                if 0<=x+dx<N and 0<=y+dy<N and grid[x+dx][y+dy] == 0 and (x+dx, y+dy) not in visited:
+                    visited.add((x+dx,y+dy))
+                    queue.append((dist + 1, x+dx, y+dy))
+                
         return -1
