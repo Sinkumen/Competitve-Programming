@@ -2,14 +2,15 @@ from fractions import Fraction
 class Solution:
     def minimumLines(self, stockPrices: List[List[int]]) -> int:
         stockPrices.sort()
-
         prev = None
-        ans = 0
-        for i in range(1,len(stockPrices)):
+        ans = 1 if len(stockPrices) > 1 else 0
+        for i in range(2,len(stockPrices)):
             day,price =  stockPrices[i]
             pday,pprice = stockPrices[i-1]
-            slope = Fraction((price-pprice), (day-pday))
-            if slope != prev:
+            ppday,ppprice = stockPrices[i-2]
+            slope = (price-pprice) * (pday-ppday)
+            slope2 = (pprice-ppprice) * (day-pday)
+            if slope != slope2:
                 ans += 1
-                prev = slope
+                
         return ans
