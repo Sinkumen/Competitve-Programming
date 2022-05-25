@@ -1,17 +1,15 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        tails = [0] * len(nums)
+        dp = [1] * len(nums)
         size = 0
-        for x in nums:
-            i, j = 0, size
-            while i != j:
-                m = (i + j) // 2
-                if tails[m] < x:
-                    i = m + 1
-                else:
-                    j = m
-            tails[i] = x
-            size = max(i + 1, size)
-        return size
+        for i in range(len(nums)-1,-1,-1):
+            for j in range(i,len(nums)):
+                if nums[j] > nums[i]:
+                    dp[i] = max(dp[i],dp[j]+1)
+
+        
+        return max(dp)
+                
+        
             
             
