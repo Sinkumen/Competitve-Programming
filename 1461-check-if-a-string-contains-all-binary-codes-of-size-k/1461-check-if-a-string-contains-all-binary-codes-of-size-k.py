@@ -7,4 +7,5 @@ class Solution:
             found.add(s[left:right+1])
             right += 1
             left += 1
+            
         return len(found) >= 2**k
