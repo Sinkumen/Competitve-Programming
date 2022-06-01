@@ -15,17 +15,13 @@ class Solution:
             
         suf = [0]*len(security)
         count = 0
+        ans = []
         for i in range(len(security)-2,-1,-1):
             if security[i] <= security[i+1]:
                 count += 1
             else:
                 count = 0
-            suf[i] = count
-        # print(pre)
-        # print(suf)
-        ans = []
-        for i in range(1,len(security)-1):
-            if pre[i] >= time and suf[i] >= time:
+            if pre[i] >= time and count >= time:
                 ans.append(i)
         return ans
                 
