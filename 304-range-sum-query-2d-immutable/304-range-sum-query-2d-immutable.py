@@ -1,11 +1,13 @@
 class NumMatrix:
 
     def __init__(self, matrix: List[List[int]]):
-        self.matrix = [[0 for _ in range(len(matrix[0])+1)] for _ in range(len(matrix)+1)]
+        self.matrix = [[0 for _ in range(len(matrix[0])+1)]]
         for i in range(len(matrix)):
+            temp = [0]
             for j in range(len(matrix[0])): 
-                self.matrix[i+1][j+1] = matrix[i][j]
-        
+                temp.append(matrix[i][j])
+            self.matrix.append(temp)
+
         for i in range(1,len(self.matrix)):
             for j in range(1,len(self.matrix[0])):
                 self.matrix[i][j] += self.matrix[i-1][j] + self.matrix[i][j-1] - self.matrix[i-1][j-1] 
