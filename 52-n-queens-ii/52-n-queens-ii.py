@@ -14,18 +14,16 @@ class Solution:
                 if y-i >= 0 and x+i < n: board[x+i][y-i] += val
                 if y+i < n and x-i >= 0: board[x-i][y+i] += val
        
-        def dfs(path,r):
+        def dfs(count,r):
             nonlocal possible
-            if len(path) == n:
+            if count == n:
                 possible += 1
                 return
             if r < n:
                 for j in range(n):
                     if board[r][j] == 0:
                         disablePath(r,j,-1)
-                        path.append((r,j))
-                        dfs(path,r+1)
-                        path.pop()
+                        dfs(count+1,r+1)
                         disablePath(r,j,1)
-        dfs([],0)
+        dfs(0,0)
         return possible
