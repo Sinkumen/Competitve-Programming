@@ -31,7 +31,6 @@ class Solution:
                 step = res + (len(nums)-i-1)
                 ans = min(step,ans)
             
-
         return ans if ans < float("inf") else -1
       
                         
