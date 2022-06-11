@@ -25,21 +25,19 @@ class Solution:
                     right = mid - 1 
             return -1
 
-        def binary(arr1,arr2):
-            ans = float("inf")
-            for i in range(len(nums)):
-                if arr1[i] == x:
-                    ans = min(ans,i) 
-                    continue
-                if arr1[i] > x:
-                    continue
-                
-                if arr1[-1] >= x:
-                    res = search(x - arr1[i],arr2)
-                    if res != -1:
-                        step = (i + (len(nums)-res)) if pre else (res + (len(nums)-i))
-                        ans = min(step,ans)
-            return ans
-        temp = binary(pre,suf)
-        return temp if temp < float("inf") else -1
+        ans = float("inf")
+        for i in range(len(nums)):
+            if pre[i] == x:
+                ans = min(ans,i) 
+                continue
+            if pre[i] > x:
+                continue
+
+            if pre[-1] >= x:
+                res = search(x - pre[i],suf)
+                if res != -1:
+                    step = (i + (len(nums)-res)) if pre else (res + (len(nums)-i))
+                    ans = min(step,ans)
+        return ans if ans < float("inf") else -1
+      
                         
