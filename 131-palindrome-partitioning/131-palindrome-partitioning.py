@@ -2,13 +2,11 @@ class Solution:
     def partition(self, s: str) -> List[List[str]]:
         ans = []
         def check(l,r):
-            left = l
-            right= r
-            while left <= right:
-                if s[left] != s[right]:
+            while l <= r:
+                if s[l] != s[r]:
                     return False
-                left += 1
-                right -= 1
+                l += 1
+                r -= 1
             return True
         
         def dfs(l,r,res):
