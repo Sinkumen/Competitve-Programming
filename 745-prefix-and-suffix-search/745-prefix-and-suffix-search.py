@@ -6,7 +6,6 @@ class Node:
 class WordFilter:
     def __init__(self, words: List[str]):
         self.root = Node()
-        
         for i in range(len(words)):
             for j in range(len(words[i])-1,-1,-1):
                 query = f"{words[i][j:]}#{words[i]}"
@@ -21,7 +20,6 @@ class WordFilter:
     def f(self, prefix: str, suffix: str) -> int:
         cur = self.root
         query = suffix+"#"+prefix
-        # print(query)
         found = True
         for char in query:
             if char not in cur.children:
@@ -29,7 +27,6 @@ class WordFilter:
                 break
             prev = cur
             cur = cur.children[char]
-        # print(cur.indices)
         if found:
             return cur.indices[-1]
         return -1
