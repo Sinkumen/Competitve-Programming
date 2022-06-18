@@ -1,35 +1,24 @@
-class Node:
-    def __init__(self):
-        self.children = {}
-        self.isEnd = False
+        
 class WordDictionary:
+
     def __init__(self):
-        self.root = Node()        
+        self.dict1 = defaultdict(set)
 
-    def addWord(self, word: str) -> None:
-        cur = self.root
-        for char in word:
-            if char not in cur.children:
-                cur.children[char] = Node()
-            cur = cur.children[char]
-        cur.isEnd = True
+    def addWord(self, word):
+        self.dict1[len(word)].add(word)
 
-    def search(self, word: str) -> bool:
-        def dfs(i,cur):
-            if i >= len(word):
-                if cur.isEnd:
+    def search(self, word):
+        if "." not in word:
+            return word in self.dict1[len(word)]
+        else:
+            for w in self.dict1[len(word)]:
+                i = 0
+
+                while i < len(word) and (w[i] == word[i] or word[i] == "."):
+                    i += 1
+
+                if i == len(word):
                     return True
-                return False
-            if word[i] == ".":
-                for nxt in cur.children.keys():
-                    res = dfs(i+1,cur.children[nxt])
-                    if res: return True
-                return False
-            elif word[i] in cur.children:
-                return dfs(i+1,cur.children[word[i]])
-            else:
-                return False
-        return dfs(0,self.root)
                 
      
         
