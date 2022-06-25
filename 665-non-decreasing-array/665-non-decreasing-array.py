@@ -12,6 +12,10 @@ class Solution:
                     break
             else:
                 stack.append(nums[i])
+                
+        if len(stack) == len(nums):
+            return True
+        
         life = 1
         for j in range(len(nums)-2,-1,-1):
             if nums[j] > reverse[-1]:
@@ -23,5 +27,5 @@ class Solution:
             else:
                 reverse.append(nums[j])
 
-        return len(stack) == len(nums) or len(reverse) == len(nums)
+        return len(reverse) == len(nums)
                 
