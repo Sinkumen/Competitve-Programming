@@ -1,26 +1,46 @@
 from sortedcontainers import SortedList
 class Solution:
     def countSmaller(self, nums: List[int]) -> List[int]:
+        arr = []
+        ans = [0]*len(nums)
+        for i in range(len(nums)):
+            arr.append((nums[i],i))
         
-        rank, N, res = {val: i + 1 for i, val in enumerate(sorted(nums))}, len(nums), []
-        BITree = [0] * (N + 1)
+        def merge(arr):
+            if len(arr)==1:
+                return arr
+            mid = len(arr)//2
+            left = merge(arr[:mid])
+            right = merge(arr[mid:])
+            
+            l = 0
+            r = 0
+            res = []
+            smaller = 0
+            while l < len(left) and r < len(right):
+                if left[l][0] > right[r][0]:
+                    res.append(right[r])
+                    smaller += 1
+                    r += 1
+                else:
+                    ans[left[l][1]] += smaller
+                    res.append(left[l])
+                    l += 1
+                    
+            while l < len(left):
+                ans[left[l][1]] += smaller
+                res.append(left[l])
+                l += 1
+                
+            while r < len(right):
+                res.append(right[r])
+                r += 1
+            return res
+        temp = merge(arr)
 
-        def update(i):
-            while i <= N:
-                BITree[i] += 1
-                i += (i & -i)
-
-        def getSum(i):
-            s = 0
-            while i:
-                s += BITree[i]
-                i -= (i & -i)
-            return s
-
-        for x in reversed(nums):
-            res += getSum(rank[x] - 1),
-            update(rank[x])
-        return res[::-1]
+        return ans
+            
+        
             
                     
             
