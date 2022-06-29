@@ -12,7 +12,6 @@ class Solution:
             mid = len(arr)//2
             left = merge(arr[:mid])
             right = merge(arr[mid:])
-            
             l = 0
             r = 0
             res = []
