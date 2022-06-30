@@ -9,4 +9,7 @@ class Solution:
                 center2 += abs(nums[(len(nums)//2)]-x)
             return min(center1,center2)
         else:
-            return sum([abs(nums[len(nums)//2]-x) for x in nums])
+            ans = 0
+            for x in nums:
+                ans += abs(nums[len(nums)//2]-x)
+            return ans
