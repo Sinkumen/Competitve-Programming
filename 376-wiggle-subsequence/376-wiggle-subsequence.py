@@ -14,7 +14,6 @@ class Solution:
                 if isPos == None and nums[j] != nums[i]:
                     cur = (nums[j] - nums[i]) > 0
                     res = max(res,dfs(j,cur))
-                    
             return res + 1
         
         return dfs(0,None)
