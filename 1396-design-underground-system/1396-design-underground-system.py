@@ -2,9 +2,8 @@ class UndergroundSystem:
 
     def __init__(self):
         self.ins = {}
-        self.total = {}
-        
-
+        self.total = defaultdict(tuple)
+    
     def checkIn(self, id: int, stationName: str, t: int) -> None:
         self.ins[id] = (stationName,t)
 
@@ -16,7 +15,6 @@ class UndergroundSystem:
         else:
             self.total[cin+"-"+stationName] = ((t-time),1)
         
-
     def getAverageTime(self, startStation: str, endStation: str) -> float:
         hours,count = self.total[startStation+"-"+endStation]
         return hours/count
