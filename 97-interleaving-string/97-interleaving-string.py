@@ -6,9 +6,7 @@ class Solution:
                 return True
             
             if p1 < len(s1) and p2 < len(s2) and p3 < len(s3) and s1[p1] == s2[p2] == s3[p3]:
-                one = dfs(p1+1,p2,p3+1)
-                two = dfs(p1,p2+1,p3+1)
-                return one or two
+                return dfs(p1+1,p2,p3+1) or dfs(p1,p2+1,p3+1)
             
             if p1 < len(s1) and p3 < len(s3) and s1[p1] == s3[p3]:
                 return dfs(p1+1,p2,p3+1)
