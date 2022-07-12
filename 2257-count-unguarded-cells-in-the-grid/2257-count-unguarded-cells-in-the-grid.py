@@ -28,10 +28,6 @@ class Solution:
                 if (i,j) in guards:
                     guard(i,j)
 
-        ans = 0
-        for i in range(m):
-            for j in range(n):
-                if (i,j) not in ng and (i,j) not in walls:
-                    ans += 1
-        return ans
+        
+        return (m*n)-(len(ng)+len(walls))
                     
