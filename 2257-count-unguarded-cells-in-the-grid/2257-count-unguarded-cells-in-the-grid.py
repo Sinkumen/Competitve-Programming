@@ -5,23 +5,16 @@ class Solution:
         ng = set()
         def guard(x,y):
             ng.add((x,y))
-            cur = x+1
-            while cur < m and (cur,y) not in guards and (cur,y) not in walls:
-                ng.add((cur,y))
-                cur += 1
-            cur = x-1
-            while 0 <= cur and (cur,y) not in guards and (cur,y) not in walls:
-                ng.add((cur,y))
-                cur -= 1
-                
-            cur = y-1
-            while 0 <= cur and (x,cur) not in guards and (x,cur) not in walls:
-                ng.add((x,cur))
-                cur -= 1
-            cur = y+1
-            while  cur < n and (x,cur) not in guards and (x,cur) not in walls:
-                ng.add((x,cur))
-                cur += 1
+            directions = [(0,1),(1,0),(0,-1),(-1,0)]
+            
+            for direc in directions:
+                nx = x + direc[0]
+                ny = y + direc[1]
+                while 0<= nx < m and 0<= ny < n and (nx,ny) not in guards and (nx,ny) not in walls:
+                    ng.add((nx,ny))
+                    nx += direc[0]
+                    ny += direc[1]
+           
             
         for i in range(m):
             for j in range(n):
