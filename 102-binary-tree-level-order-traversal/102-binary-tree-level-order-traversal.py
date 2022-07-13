@@ -10,9 +10,11 @@ class Solution:
             queue = deque([root])
             ans = [] 
             while queue:
-                ans.append([node.val for node in queue])
+                temp = []
                 for _ in range(len(queue)):
                     cur = queue.popleft()
+                    temp.append(cur.val)
                     if cur.left: queue.append(cur.left)
                     if cur.right: queue.append(cur.right)
+                ans.append(temp)
             return ans
