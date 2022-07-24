@@ -14,7 +14,7 @@ class Solution:
             return False
 
         for i in range(len(matrix)):
-            if matrix[i][0] <= target and binary(i):
+            if (matrix[i][0] == target) or (matrix[i][0] < target and binary(i)):
                 return True
         return False
                 
