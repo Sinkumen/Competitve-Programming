@@ -1,24 +1,26 @@
 class Solution:
     def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
         
-        def generate_pattern(word):
-            count = 0
-            found = {}
-            patt = []
-            for char in word:
-                if char not in found:
-                    patt.append(str(count))
-                    found[char] = count
-                    count += 1
-                else:
-                    patt.append(str(found[char]))
-            return "".join(patt)
+        
         ans = []
-        pat = generate_pattern(pattern)
         
         for word in words:
-            cur = generate_pattern(word)
-            if pat == cur:
+    
+            dic = dict()
+            seen = set()
+            found = True
+            for j in range(len(pattern)):
+                if pattern[j] not in dic:
+                    if word[j] not in seen:
+                        dic[pattern[j]] = word[j]
+                        seen.add(word[j])
+                    else:
+                        found = False
+                        break
+                elif dic[pattern[j]] != word[j]:
+                    found = False
+                    break
+            if found:
                 ans.append(word)
         return ans
-            
+                
