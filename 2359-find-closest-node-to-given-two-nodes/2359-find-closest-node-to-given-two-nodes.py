@@ -26,11 +26,7 @@ class Solution:
                 count += 1
             else:
                 node2 = -1
-        # print(idx1)
-        # print(one)
-        # print(idx2)
-        # print(two)
-       
+      
         ans = -1
         order = float("inf")
         for node in one:
