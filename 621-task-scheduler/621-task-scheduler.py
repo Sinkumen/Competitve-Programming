@@ -18,7 +18,6 @@ class Solution:
                 temp = []
                 while heap and heap[0][1] in last and (curTime-last[heap[0][1]]-1) < n:
                     temp.append(heapq.heappop(heap))
-
                 if not heap:
                     rem,task = temp[0]
                     diff = (curTime-last[task]-1)
@@ -38,8 +37,6 @@ class Solution:
                     for j in range(len(temp)):
                         heapq.heappush(heap,temp[j])
                 curTime += 1
-                
-                
         return curTime
                 
                 
