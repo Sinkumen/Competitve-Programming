@@ -1,18 +1,18 @@
 class Solution:
     def taskSchedulerII(self, tasks: List[int], space: int) -> int:
-        curTiime = 0
+        curTime = 0
         history = {}
         days = 0
         for task in tasks:
             if task in history:
-                diff = curTiime - history[task]-1
+                diff = curTime - history[task]-1
                 if diff < space:
-                    curTiime += (space - diff)
-                history[task] = curTiime
+                    curTime += (space - diff)
+                history[task] = curTime
             else:
-                history[task] = curTiime
-            curTiime += 1
+                history[task] = curTime
+            curTime += 1
             
                 
-        return curTiime
+        return curTime
         
