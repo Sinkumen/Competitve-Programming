@@ -35,7 +35,6 @@ class Solution:
                     if first and second:
                         sub += (first*second)
                     sub += 1
-        
                 return sub
             return 0
         
