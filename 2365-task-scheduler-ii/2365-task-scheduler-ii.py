@@ -8,11 +8,8 @@ class Solution:
                 diff = curTime - history[task]-1
                 if diff < space:
                     curTime += (space - diff)
-                history[task] = curTime
-            else:
-                history[task] = curTime
+            history[task] = curTime
             curTime += 1
-            
                 
         return curTime
         
