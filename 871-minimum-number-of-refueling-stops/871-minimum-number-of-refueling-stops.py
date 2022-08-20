@@ -8,8 +8,8 @@ class Solution:
         if startFuel < 0:
             return -1
         ans = 0
+        
         for i in range(len(stations)-1):
-            
             pos,amount = stations[i]
             diff = stations[i+1][0] - pos
             if startFuel < diff:
