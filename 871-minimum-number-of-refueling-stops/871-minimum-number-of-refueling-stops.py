@@ -12,7 +12,6 @@ class Solution:
             
             pos,amount = stations[i]
             diff = stations[i+1][0] - pos
-            # print(i,startFuel,amount,diff,heap)
             if startFuel < diff:
                 while startFuel < diff and heap:
                     if -heap[0] > amount:  
@@ -30,9 +29,8 @@ class Solution:
                     heapq.heappush(heap,-amount)
             else:
                 heapq.heappush(heap,-amount)
-            # print(startFuel)
+                
             startFuel -= diff
-            # print(startFuel)
 
         return ans
             
