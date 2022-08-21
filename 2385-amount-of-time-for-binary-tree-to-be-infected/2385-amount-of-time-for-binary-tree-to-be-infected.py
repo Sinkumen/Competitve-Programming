@@ -6,38 +6,28 @@
 #         self.right = right
 class Solution:
     def amountOfTime(self, root: Optional[TreeNode], start: int) -> int:
+        graph = defaultdict(list)
+        
         def dfs(node):
-            if not node:
-                return (0,0,False)
-            if node.val == start:
-                return (0,0,True)
-           
-
-            left = dfs(node.left)
-            right = dfs(node.right)
-            # print(node.val,left,right)
-            if left[2] or right[2]:
-                temp = (left[0] + right[0] + 1)
-                gl = max(left[1],right[1],temp)
-                if left[2]: return (left[0] + 1,gl,True)
-                if right[2]: return (right[0] + 1,gl,True)
-            else:
-                gl = max(left[0]+1,right[0]+1)
-                return (gl,gl,False)
-        def dfs2(node):
-            if not node:
-                return (0,False)
-            left = dfs2(node.left)
-            right = dfs2(node.right)
-            
-            if node.val == start:
-                return (max(left[0],right[0]),True)
-            if left[1]:
-                return left
-            if right[1]:
-                return right
-            return (max(left[0],right[0])+1,False)
-        before = dfs(root)
-        after = dfs2(root)
-        # print(before,after)
-        return max(before[1],after[0])
+            nonlocal graph
+            if node:
+                if node.left:
+                    graph[node.val].append(node.left.val)
+                    graph[node.left.val].append(node.val)
+                    dfs(node.left)
+                if node.right:
+                    graph[node.val].append(node.right.val)
+                    graph[node.right.val].append(node.val)
+                    dfs(node.right)
+        dfs(root)
+        queue = deque([(start,0)])
+        visited=set([start])
+        while queue:
+            cur,level = queue.popleft()
+            for nxt in graph[cur]:
+                if nxt not in visited:
+                    visited.add(nxt)
+                    queue.append((nxt,level+1))
+                    
+        return level
+                    
