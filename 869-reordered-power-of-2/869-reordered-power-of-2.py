@@ -6,6 +6,6 @@ class Solution:
         for perm in itertools.permutations(str(n)):
             if perm[0] != "0" :
                 num = int("".join(perm))
-                if ceil(Log2(num)) == floor(Log2(num)):
+                if bin(num).count("1") == 1:
                     return True
         return False
