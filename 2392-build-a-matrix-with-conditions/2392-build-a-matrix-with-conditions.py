@@ -1,26 +1,15 @@
 class Solution:
     def buildMatrix(self, k: int, rowConditions: List[List[int]], colConditions: List[List[int]]) -> List[List[int]]:
-        rindegree = [0]*(k+1)
-        cindegree = [0]*(k+1)
-        rgraph = defaultdict(list)
-        cgraph = defaultdict(list)
-        cvisited = set()
-        rvisited = set()
-        for rc in rowConditions:
-            rc = tuple(rc)
-            if rc not in cvisited:
-                cvisited.add(rc)
-                rgraph[rc[0]].append(rc[1])
-                rindegree[rc[1]] += 1
-                
-        for cc in colConditions:
-            cc = tuple(cc)
-            if cc not in rvisited:
-                rvisited.add(cc)
-                cgraph[cc[0]].append(cc[1])
-                cindegree[cc[1]] += 1
-
-        def find(indegree,graph):
+        def find(conditions):
+            indegree = [0]*(k+1)
+            graph = defaultdict(list)
+            for c in conditions:
+                c = tuple(c)
+                visited = set()
+                if c not in visited:
+                    visited.add(c)
+                    graph[c[0]].append(c[1])
+                    indegree[c[1]] += 1
             queue = deque()
             for i in range(1,k+1):
                 if not indegree[i]:
@@ -38,8 +27,8 @@ class Solution:
                 return rows
             return []
 
-        row = find(rindegree,rgraph)
-        col = find(cindegree,cgraph)
+        row = find(rowConditions)
+        col = find(colConditions)
         ans = [[0 for _ in range(k)] for _ in range(k)]
 
         if row and col:
