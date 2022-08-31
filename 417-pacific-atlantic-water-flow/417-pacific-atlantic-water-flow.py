@@ -22,7 +22,6 @@ class Solution:
                     if (newX,newY) not in visited and heights[x][y] <= heights[newX][newY]:
                         visited.add((newX,newY))
                         dfs(newX,newY,isPacific,visited)
-                    
         avisited = set()
         pvisited = set()
         for i in range(len(heights[0])):
@@ -36,8 +35,6 @@ class Solution:
             dfs(j,0,True,pvisited)
             dfs(j,len(heights[0])-1,False,avisited)
         ans = []
-        # print(avisited)
-        # print(pvisited)
         for a in avisited:
             if a in pvisited:
                 ans.append(a)
