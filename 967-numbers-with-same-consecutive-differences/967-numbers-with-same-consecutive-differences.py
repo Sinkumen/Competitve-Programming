@@ -6,15 +6,14 @@ class Solution:
             if len(dig) == n:
                 ans.add(int("".join(dig)))
                 return
+            
             last = int(dig[-1])
-            if 0 <= last + k < 10:
-                dig.append(str(last + k))
-                dfs(dig)
-                dig.pop()
-            if 0 <= last - k < 10:
-                dig.append(str(last - k))
-                dfs(dig)
-                dig.pop()
+            nxts = set([last + k,last - k])
+            for nxt in nxts:
+                if 0 <= nxt < 10:
+                    dig.append(str(nxt))
+                    dfs(dig)
+                    dig.pop()
                 
         for i in range(1,10):
             dfs([str(i)])
