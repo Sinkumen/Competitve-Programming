@@ -19,8 +19,6 @@ class Solution:
         
         ans = []
         dfs(root,0,0)
-        # print(cols)
-        # print(cells)
         for key in sorted(cols.keys()):
             arr = []
             for val in sorted(cols[key]): 
