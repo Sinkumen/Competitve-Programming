@@ -13,11 +13,14 @@ class Solution:
         queue = deque([root])
         ans = []
         while queue:
-            ans.append([x.val for x in queue])
+            temp = []
             size = len(queue)
             for _ in range(size):
-                for nxt in queue.popleft().children:
+                cur = queue.popleft()
+                temp.append(cur.val)
+                for nxt in cur.children:
                     queue.append(nxt)
+            ans.append(temp)
         return ans
             
             
