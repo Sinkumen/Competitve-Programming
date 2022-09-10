@@ -12,7 +12,6 @@ class Solution:
             else:
                 w = dfs(i+1,True,rem) - prices[i]
                 wo = dfs(i+1,False,rem)
-                # print(i,w,wo)
                 return max(w,wo)
                 
         return dfs(0,False,k)
