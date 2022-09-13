@@ -4,7 +4,6 @@ class Solution:
             binary = bin(num)[2:]
             diff = 8-len(binary)
             octate = "0"*diff + binary
-            # print(octate)
             ones = 0
             for b in octate:
                 if b == "1":
