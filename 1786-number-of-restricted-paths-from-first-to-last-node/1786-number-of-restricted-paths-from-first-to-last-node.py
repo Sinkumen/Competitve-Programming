@@ -6,18 +6,18 @@ class Solution:
             graph[fr].append((to,weight))
             graph[to].append((fr,weight))
             
-        dtl = defaultdict(lambda: float("inf"))
-        prevState = defaultdict(lambda:float("inf"))
-        prevState[n] = 0
+        dtl = {n:0}
         def findShortest():
             queue = [(0,n)]
+            visited = set()
             while queue:
                 level,cur = heapq.heappop(queue)
-                dtl[cur] = min(dtl[cur], level)
-                for nxt,w in graph[cur]:
-                    if prevState[nxt] > (level+w):
-                        prevState[nxt] = (level+w)
-                        heapq.heappush(queue,(level + w,nxt))
+                if cur not in visited:
+                    dtl[cur] = level
+                    visited.add(cur)
+                    for nxt,w in graph[cur]:
+                        if nxt not in visited:
+                            heapq.heappush(queue,(level + w,nxt))
         findShortest()
         # print(dtl)   
         @lru_cache(None)
@@ -32,7 +32,3 @@ class Solution:
         # print(dtl)
         return dfs(1) % mod
                         
-                    
-                
-                
-        
