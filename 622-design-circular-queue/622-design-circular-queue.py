@@ -23,7 +23,6 @@ class MyCircularQueue:
     def deQueue(self) -> bool:
         if self.isEmpty():
             return False
-        # print(self.head.next.val)
         nxt = self.head.next
         self.head.next = nxt.next 
         if not self.head.next:
