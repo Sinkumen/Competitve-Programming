@@ -40,13 +40,11 @@ class FrontMiddleBackQueue:
             nxt.prev = new
         else:
             self.tail = cur.next
-        # print(self.size,nxt,self.tail.val)
         self.size += 1
         
             
 
     def pushBack(self, val: int) -> None:
-        # print(self.head.val,self.tail.val)
         prev = self.tail
         new = Node(val)
         new.prev = prev
@@ -57,7 +55,6 @@ class FrontMiddleBackQueue:
     def popFront(self) -> int:
         if self.size == 0:
             return -1
-        # print(self.head.val,self.head.next,self.size)
         first = self.head.next
         second = first.next
         if second:
@@ -71,7 +68,6 @@ class FrontMiddleBackQueue:
         
 
     def popMiddle(self) -> int:
-        # print("mid")
         if self.size == 0:
             return -1
         
@@ -81,10 +77,8 @@ class FrontMiddleBackQueue:
         while cur and count < mid:
             cur = cur.next
             count += 1
-        # print(cur.prev.val,cur.val,self.size)
         prev = cur.prev
         nxt = cur.next
-        # print(prev.val,nxt)
         prev.next = nxt
         if nxt: 
             nxt.prev = prev
@@ -94,7 +88,6 @@ class FrontMiddleBackQueue:
         return cur.val
 
     def popBack(self) -> int:
-        # print(self.tail.val,self.size)
         if self.size == 0:
             return -1
         
