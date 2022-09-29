@@ -12,11 +12,9 @@ class Solution:
                 right = mid - 1
             else:
                 left = mid + 1
-        # print(max(0,left),min(len(arr)-1,right))
-        
         close = min(len(arr)-1,left) if abs(arr[min(len(arr)-1,left)]-x) < abs(arr[max(0,right)]-x) else max(0,right)
         start = idx if idx != -1 else close
-        # print(start)
+
         ans = [arr[start]]
         k -= 1 
         left = start - 1 
@@ -31,7 +29,6 @@ class Solution:
                 ans.append(arr[right])
                 right += 1
             k -= 1
-        # print(ans,k,left)
         if k:
             ans.extend(arr[right:right + k])
             ans.extend(arr[max(0,left-k+1):max(0,left+1)])
