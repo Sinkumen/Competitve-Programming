@@ -1,14 +1,13 @@
 class Solution:
     def minCost(self, colors: str, neededTime: List[int]) -> int:
         prev = ""
-        heap = []
+        prevCost = 0  
         ans = 0
         for i in range(len(colors)):
-            while colors[i] != prev and len(heap) > 1:
-                ans += heapq.heappop(heap)
-            if colors[i] != prev: heap = []
-            heapq.heappush(heap,neededTime[i])
-            prev = colors[i]
-        while len(heap) > 1:
-            ans += heapq.heappop(heap)
+            if colors[i] == prev:
+                ans += min(neededTime[i],prevCost)
+                prevCost = max(neededTime[i],prevCost)
+            else:
+                prev = colors[i]
+                prevCost = neededTime[i]
         return ans
