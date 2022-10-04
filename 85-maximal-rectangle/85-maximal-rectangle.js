@@ -20,7 +20,7 @@ function maximalRectangle(matrix) {
         (j === matrix[i].length || streaks[i][j] <= streaks[i][stack[stack.length-1]])
       ) {
         const height = streaks[i][stack.pop()];
-        const width = stack.length === 0 ? j : j - stack.at(-1) - 1;
+        const width = stack.length === 0 ? j : j - stack[stack.length-1] - 1;
 
         max = Math.max(max, width * height);
       }
