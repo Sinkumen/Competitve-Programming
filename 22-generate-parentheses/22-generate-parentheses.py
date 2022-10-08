@@ -1,19 +1,25 @@
-class Solution:
-    def generateParenthesis(self, n: int) -> List[str]:
-        ans = []
-        def dfs(rem,closed,res):
-            if not rem:
-                ans.append("".join(res) + ")"*(n-closed))
-                return
-            res.append("(")
-            dfs(rem-1,closed,res)
-            res.pop()
-            if n-rem > closed:
-                res.append(")")
-                dfs(rem,closed + 1,res)
-                res.pop()
-           
-        dfs(n,0,[])
-        return ans
-                
-                
+class Solution {
+     public List<String> generateParenthesis(int n) {
+        List<String> ans = new ArrayList<>();
+        backtrack(ans, new StringBuilder(), 0, 0, n);
+        return ans;
+    }
+
+    public void backtrack(List<String> ans, StringBuilder cur, int open, int close, int max){
+        if (cur.length() == max * 2) {
+            ans.add(cur.toString());
+            return;
+        }
+
+        if (open < max) {
+            cur.append("(");
+            backtrack(ans, cur, open+1, close, max);
+            cur.deleteCharAt(cur.length() - 1);
+        }
+        if (close < open) {
+            cur.append(")");
+            backtrack(ans, cur, open, close+1, max);
+            cur.deleteCharAt(cur.length() - 1);
+        }
+    }
+}
