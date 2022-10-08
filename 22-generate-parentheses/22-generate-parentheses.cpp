@@ -1,16 +1,18 @@
-const generateParenthesis = (n) => {
-  const res = [];
-
-  const go = (l, r, s) => {
-    if (s.length === 2 * n) {
-      res.push(s);
-      return;
+class Solution {
+public:
+    void helper(int open,int close,int n,string current,vector<string> &result)
+    {
+        if(current.length()==n*2)
+        {
+            result.push_back(current);
+            return;
+        }
+        if(open<n)  helper(open+1,close,n,current+"(",result);
+        if(close<open)  helper(open,close+1,n,current+")",result);
     }
-
-    if (l < n) go(l + 1, r, s + '(');
-    if (r < l) go(l, r + 1, s + ')');
-  };
-
-  go(0, 0, '');
-  return res;
+    vector<string> generateParenthesis(int n) {
+        vector<string>result;
+        helper(0,0,n,"",result);
+        return result;
+    }
 };
