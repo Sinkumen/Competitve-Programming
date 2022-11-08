@@ -6,7 +6,6 @@ class Solution:
         ans = 0
         while i < len(s):     
             if s[i] != prev:
-                # print(i,count,prev,ans)
                 temp = i
                 while temp < len(s) and count:
                     if s[temp] == prev:
