@@ -5,18 +5,22 @@ class Solution:
         for frm,to in connections:
             graph[frm].append(to)
             incoming[to].append(frm)
-        
-        def dfs(node,visited):
-            ans = 0
-            for nxt in graph[node]:
+        ans = 0
+        queue = deque([(0,0)])
+        visited = set([0])
+        while queue:
+            cur,direc = queue.popleft()
+            if direc:
+                ans += 1
+            for nxt in graph[cur]:
                 if nxt not in visited:
                     visited.add(nxt)
-                    ans += dfs(nxt,visited) + 1
-            for prev in incoming[node]:
+                    queue.append((nxt,-1))
+            for prev in incoming[cur]:
                 if prev not in visited:
                     visited.add(prev)
-                    ans += dfs(prev,visited)          
-            return ans
-        return dfs(0,set([0]))
+                    queue.append((prev,0))
+            
+        return ans
                 
         
