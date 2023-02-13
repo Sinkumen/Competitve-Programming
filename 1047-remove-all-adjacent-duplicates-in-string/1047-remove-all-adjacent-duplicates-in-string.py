@@ -7,4 +7,3 @@ class Solution:
             else:
                 stack.pop()
         return "".join(stack)
-                
