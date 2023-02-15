@@ -9,13 +9,11 @@ class Solution:
                 if pr == b:
                     break
                 else:
-                    i = -1
-                    j = -1
                     for temp in preferences[pr]:
-                        if temp == a and j == -1:
+                        if temp == a:
                             return False
                         if temp == mp[pr]:
-                            j = mp[0]
+                            break
             return True
         ans = 0
         for f,s in pairs:
