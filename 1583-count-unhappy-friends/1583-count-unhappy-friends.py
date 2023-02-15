@@ -4,12 +4,15 @@ class Solution:
         for a,b in pairs:
             mp[a] = b
             mp[b] = a
+        visited = set()
         def check(a,b):
             for pr in preferences[a]:
                 if pr == b:
                     break
                 for temp in preferences[pr]:
                     if temp == a:
+                        visited.add(a)
+                        visited.add(pr)
                         return False
                     if temp == mp[pr]:
                         break
@@ -20,5 +23,5 @@ class Solution:
                 ans += 1
             if not check(s,f):
                 ans += 1
-        return ans
+        return len(visited)
                             
