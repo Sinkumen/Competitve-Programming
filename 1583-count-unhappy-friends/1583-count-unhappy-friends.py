@@ -8,12 +8,11 @@ class Solution:
             for pr in preferences[a]:
                 if pr == b:
                     break
-                else:
-                    for temp in preferences[pr]:
-                        if temp == a:
-                            return False
-                        if temp == mp[pr]:
-                            break
+                for temp in preferences[pr]:
+                    if temp == a:
+                        return False
+                    if temp == mp[pr]:
+                        break
             return True
         ans = 0
         for f,s in pairs:
