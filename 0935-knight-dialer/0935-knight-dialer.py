@@ -1,3 +1,4 @@
+from functools import cache
 class Solution:
     def knightDialer(self, n: int) -> int:
         mod = 10**9 + 7
@@ -14,9 +15,8 @@ class Solution:
             9:[2,4]
         }
         ans = 0
-        @lru_cache()
+        @cache
         def dfs(i,size):
-            nonlocal ans
             if size == n:
                 return 1
             res = 0
