@@ -13,8 +13,6 @@ class Solution:
                 for h in poss[k]:
                     summ = (summ + dp[j+1][h]) % mod
                 dp[j][k] = summ
-        # print(dp[n-2])
-        # print(dp[n-1])
         return sum(dp[0]) % mod
         
                 
